@@ -12,7 +12,7 @@ namespace APIRestEquipos.Data
             {
                 SqlCommand cmd = new SqlCommand("usp_registrar", oConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@id", oEquipo.id);
+                //cmd.Parameters.AddWithValue("@id", oEquipo.id);
                 cmd.Parameters.AddWithValue("@nombreEquipo", oEquipo.nombreEquipo);
                 cmd.Parameters.AddWithValue("@puntosTotales", oEquipo.puntosTotales);
                 cmd.Parameters.AddWithValue("@lanzamientos", oEquipo.lanzamientos);
@@ -84,15 +84,15 @@ namespace APIRestEquipos.Data
                         {
                             oListaEquipo.Add(new Equipo()
                             {
-                                id = Convert.ToInt32(dr["IdUsuario"]),
-                                nombreEquipo = dr["NombreEquipo"].ToString(),
-                                puntosTotales = dr["PuntosTotales"].ToString(),
-                                lanzamientos = Convert.ToInt32(dr["Lanzamientos"]),
-                                asistencias = Convert.ToInt32(dr["Asistencias"]),
-                                rebotes = Convert.ToInt32(dr["Rebotes"]),
-                                perdidas = Convert.ToInt32(dr["Perdidas"]),
-                                robos = Convert.ToInt32(dr["Robos"]),
-                                triples = Convert.ToInt32(dr["Triples"])
+                                id = Convert.ToInt32(dr["id"]),
+                                nombreEquipo = dr["nombreEquipo"].ToString(),
+                                puntosTotales = dr["puntosTotales"].ToString(),
+                                lanzamientos = Convert.ToInt32(dr["lanzamientos"]),
+                                asistencias = Convert.ToInt32(dr["asistencias"]),
+                                rebotes = Convert.ToInt32(dr["rebotes"]),
+                                perdidas = Convert.ToInt32(dr["perdidas"]),
+                                robos = Convert.ToInt32(dr["robos"]),
+                                triples = Convert.ToInt32(dr["triples"])
                             });
                         }
 
@@ -109,14 +109,14 @@ namespace APIRestEquipos.Data
             }
         }
 
-        public static Equipo Obtener(int idEquipo)
+        public static Equipo Obtener(int id)
         {
             Equipo oEquipo = new Equipo();
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
                 SqlCommand cmd = new SqlCommand("usp_obtener", oConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@idusuario", idEquipo);
+                cmd.Parameters.AddWithValue("@id", id);
 
                 try
                 {
@@ -130,15 +130,15 @@ namespace APIRestEquipos.Data
                         {
                             oEquipo = new Equipo()
                             {
-                                id = Convert.ToInt32(dr["IdUsuario"]),
-                                nombreEquipo = dr["NombreEquipo"].ToString(),
-                                puntosTotales = dr["PuntosTotales"].ToString(),
-                                lanzamientos = Convert.ToInt32(dr["Lanzamientos"]),
-                                asistencias = Convert.ToInt32(dr["Asistencias"]),
-                                rebotes = Convert.ToInt32(dr["Rebotes"]),
-                                perdidas = Convert.ToInt32(dr["Perdidas"]),
-                                robos = Convert.ToInt32(dr["Robos"]),
-                                triples = Convert.ToInt32(dr["Triples"])
+                                id = Convert.ToInt32(dr["id"]),
+                                nombreEquipo = dr["nombreEquipo"].ToString(),
+                                puntosTotales = dr["puntosTotales"].ToString(),
+                                lanzamientos = Convert.ToInt32(dr["lanzamientos"]),
+                                asistencias = Convert.ToInt32(dr["asistencias"]),
+                                rebotes = Convert.ToInt32(dr["rebotes"]),
+                                perdidas = Convert.ToInt32(dr["perdidas"]),
+                                robos = Convert.ToInt32(dr["robos"]),
+                                triples = Convert.ToInt32(dr["triples"])
                             };
                         }
 
@@ -161,7 +161,7 @@ namespace APIRestEquipos.Data
             {
                 SqlCommand cmd = new SqlCommand("usp_eliminar", oConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@idusuario", id);
+                cmd.Parameters.AddWithValue("@id", id);
 
                 try
                 {
